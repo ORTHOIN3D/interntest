@@ -18,6 +18,8 @@ from django.urls import path, include
 from rest_framework import routers
 from django.conf import settings
 from django.conf.urls.static import static
+from django.views.generic.base import RedirectView
+
 from . import views
 
 
@@ -29,4 +31,9 @@ router.register("state", views.Machine, basename="state")
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("api/1/", include(router.urls)),
+    path(
+        "",
+        RedirectView.as_view(url="/static/index.html", permanent=False),
+        name="index",
+    ),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -80,8 +80,9 @@ You can provide your solution integrated to the (python) backend or in a standal
 - Reactive, pretty interface for the frontend
 - If you add API endpoint, please respect a RESTful philosophy
 
-## Some assets
+## Assets & References
 
+- The "living" page is available [here](http://interntest.orthoin3d.com:8000/)
 - The "boilerplate" source code is available [here](https://github.com/ORTHOIN3D/interntest)
 - A test stl [test file](https://github.com/ORTHOIN3D/interntest/blob/main/modelworkshtop/static/stl/test.stl) can be used to test algorithms and frontend page (download it)
 - Django [here](https://www.djangoproject.com/)
