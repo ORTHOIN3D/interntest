@@ -31,7 +31,9 @@ Pick only tasks you want to develop.
 
 - Develop a modern, pretty web pages with React or Vue.js or any other "modern" framework
 - You can find [here](https://preview.uxpin.com/3bb216c737ccee066be5c6b327a4c958c9a903cf#/pages/136070899) the prototype of the application
-- Add 3d viewer in the frontend for raw input file and the "output files"
+- Add 3d viewer in the frontend for raw input file and the output
+- Drive state of the printer:
+  ![State Machine](https://github.com/ORTHOIN3D/interntest/blob/main/modelworkshtop/static/imgs/state-machine.jpg)
 
 ### Backend/Infrastructure
 
