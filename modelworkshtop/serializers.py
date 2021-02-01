@@ -5,7 +5,7 @@ from . import models
 class Model(serializers.ModelSerializer):
     class Meta:
         model = models.Model
-        fields = ("id", "name", "status", "raw", "output")
+        fields = ("id", "name", "status", "raw")
 
 
 class Job(serializers.ModelSerializer):
