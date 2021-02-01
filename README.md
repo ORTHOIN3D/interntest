@@ -57,7 +57,7 @@ You can provide your solution integrated to the (python) backend or in a standal
 - Provide your solution as a python module with instruction to use it
 - If you want, you can integrate the solution with the provided backend
 - The target python must at least Python3.6
-- Provide all depedencies for each algorithms in a requirements.txt file
+- Provide all depedencies for each algorithm in a requirements.txt file
 
 #### Standalone
 
@@ -69,7 +69,7 @@ You can provide your solution integrated to the (python) backend or in a standal
 
 ## Evaluation criteria
 
-- Do not block, ask questions, the test objective is to "simulate" a team work
+- Do not get stuck, ask questions, the purpose of the test is to simulate a teamwork
 - Add comments/documentation in your delivery
 - Use git and commit regularly, the commit comment will be read, and the quality of the git history will be evaluated
 - Quality of code: try to respect the good practices of the using language
