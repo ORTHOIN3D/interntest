@@ -83,3 +83,30 @@ You can provide your solution integrated to the (python) backend or in a standal
 - This page is a quick & dirty, minimal frontend page for the application
 - The "boilerplate" source code is available [here](#)
 - A test stl [test file](stl/test.stl) can be used to test algorithms and frontend page (download it)
+
+## Boilerplate instructions
+
+You can fork and use this project as a starting point for your delivery.
+This is a (python) django project
+
+Install the dependencies
+
+```
+$ pip install -r requirements.txt
+```
+
+Create migrations and initialize (sqlite3) database and collect statics.
+
+```console
+$ python manage.py makemigrations
+$ python manage.py migrate
+$ python manage.py collectstatic
+```
+
+Launch the server
+
+```
+$ python manage.py runserver
+```
+
+Check the web application got to the [home](http://localhost:8000/static/index.html)
