@@ -2,8 +2,8 @@
 
 ## Introduction: the application
 
-The main objective is to develop a new online web software to manage
-3d model printing: run process on it, check the result and send instruction to a printer API.
+The main objective is to develop a new online web software to drive a
+3d model printer: run process on input model, check the result and send instruction to the printer.
 
 The applications is composed of "pages":
 
@@ -67,7 +67,7 @@ You can provide your solution integrated to the (python) backend or in a standal
 
 ## Evaluation criteria
 
-- Do not block, ask questions, the test wants to "simulate" a team work
+- Do not block, ask questions, the test objective is to "simulate" a team work
 - Add comments/documentation in your delivery
 - Use git and commit regularly, the commit comment will be read, and the quality of the git history will be evaluated
 - Quality of code: try to respect the good practices of the using language
@@ -80,9 +80,10 @@ You can provide your solution integrated to the (python) backend or in a standal
 
 ## Some assets
 
-- This page is a quick & dirty, minimal frontend page for the application
-- The "boilerplate" source code is available [here](#)
-- A test stl [test file](stl/test.stl) can be used to test algorithms and frontend page (download it)
+- The "boilerplate" source code is available [here](https://github.com/ORTHOIN3D/interntest)
+- A test stl [test file](https://github.com/ORTHOIN3D/interntest/blob/main/modelworkshtop/static/stl/test.stl) can be used to test algorithms and frontend page (download it)
+- Django [here](https://www.djangoproject.com/)
+- Django rest framework [here](https://www.django-rest-framework.org/)
 
 ## Boilerplate instructions
 
