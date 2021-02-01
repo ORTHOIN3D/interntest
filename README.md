@@ -1,16 +1,16 @@
-# Instruction
+# Instructions
 
 ## Introduction: the application
 
 The main objective is to develop a new online web software to drive a
-3d model printer: run process on input model, check the result and send instruction to the printer.
+3d model printer: run process on the input model, check the result and send commands to the printer.
 
 The applications is composed of "pages":
 
 - Three web pages, home, inspector and printer
 - Home: list all previous uploaded model
 - Inspector: upload new model, run process on it, vizualize the results
-- Printer: drive a printer API to send model and read the printer states
+- Printer: drive a printer API to send a model and read the printer states
 
 ## Instructions
 
@@ -20,7 +20,7 @@ it to provide your own solution, or piece of solution.
 You can choose to develop any part of the project, interact with the
 team to ask any questions.
 
-You can choose/use any open-source libraries but you _MUST_ give link in
+You can choose/use any open-source libraries but you _MUST_ give the links in
 the source code to the library webpage
 
 ## Parts description

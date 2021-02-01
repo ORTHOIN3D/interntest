@@ -12,12 +12,12 @@
   </head>
 
   <body>
-    <h1>Instruction</h1>
+    <h1>Instructions</h1>
 
     <h2>Introduction: the application</h2>
     <p>
-      The main objective is to develop a new online web software to manage
-      3d model printing: run process on it, check the result and send instruction to a printer API.
+      The main objective is to develop a new online web software to drive a
+      3d model printer: run process on the input model, check the result and send commands to a printer.
     </p>
     <p>
       The applications is composed of "pages":
@@ -25,7 +25,7 @@
         <li>Three web pages, home, inspector and printer</li>
         <li>Home: list all previous uploaded model</li>
         <li>Inspector: upload new model, run process on it, vizualize the results</li>
-        <li>Printer: drive a printer API to send model and read the printer states</li>
+        <li>Printer: drive a printer API to send a model and read the printer states</li>
       </ul>
     </p>
 
@@ -40,7 +40,7 @@
       team to ask any questions.
     </p>
     <p>
-      You can choose/use any open-source libraries but you <b>MUST</b> give link in
+      You can choose/use any open-source libraries but you <b>MUST</b> give the links in
       the source code to the library webpage
     </p>
 
@@ -52,6 +52,7 @@
       <li>Develop a modern, pretty web pages with React or Vue.js or any other "modern" framework</li>
       <li>You can find <a href="https://preview.uxpin.com/3bb216c737ccee066be5c6b327a4c958c9a903cf#/pages/136070899">here</a> the prototype of the application</li>
       <li>Add 3d viewer in the frontend for raw input file and the "output files"
+      <li>Drive state of the printer: <img src="/static/imgs/state-machine.jpg" alt="State Machine"/></li>
     </ul>
     
     <h3>Backend/Infrastructure</h3>
@@ -104,15 +105,14 @@
       <li>Reactive, pretty interface for the frontend</li>
       <li>If you add API endpoint, please respect a RESTful philosophy </li>
     </ul>
-    
-    
 
     <h2>Some assets</h2>
     <ul>
       <li>This page is a quick & dirty, minimal frontend page for the application</li>
-      <li>The "boilerplate" source code is available <a href="#">here</a></li>
+      <li>The "boilerplate" source code is available <a href="https://github.com/ORTHOIN3D/interntest">here</a></li>
       <li>A test stl <a href="stl/test.stl">test file</a> can be used to test algorithms and frontend page (download it)</li>
-      
+      <li>Django <a href="https://www.djangoproject.com/">here</a></li>
+      <li> Django rest framework <a href="https://www.django-rest-framework.org/">here</a></li>
     </ul>
     
     <h1>List of models</h1>
