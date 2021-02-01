@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+
+    <title>Model workshop</title>
+    <meta name="description" content="The boilerplate for model workshop" />
+    <meta name="author" content="Orthoin3d" />
+
+    <link rel="stylesheet" href="css/style.css?v=1.0" />
+  </head>
+
+  <body>
+    <h1>Instruction</h1>
+
+    <h2>Introduction: the application</h2>
+    <p>
+      The main objective is to develop a new online web software to manage
+      3d model printing: run process on it, check the result and send instruction to a printer API.
+    </p>
+    <p>
+      The applications is composed of "pages":
+      <ul>
+        <li>Three web pages, home, inspector and printer</li>
+        <li>Home: list all previous uploaded model</li>
+        <li>Inspector: upload new model, run process on it, vizualize the results</li>
+        <li>Printer: drive a printer API to send model and read the printer states</li>
+      </ul>
+    </p>
+
+    
+    <h2>Instructions</h2>
+    <p>
+      A "boilerplate" is provided to lay the foundations but you can bypass
+      it to provide your own solution, or piece of solution.
+    </p>
+    <p>
+      You can choose to develop any part of the project, interact with the
+      team to ask any questions.
+    </p>
+    <p>
+      You can choose/use any open-source libraries but you <b>MUST</b> give link in
+      the source code to the library webpage
+    </p>
+
+    <h2>Parts description</h2>
+    Pick only tasks you want to develop.
+
+    <h3>Frontend</h3>
+    <ul>
+      <li>Develop a modern, pretty web pages with React or Vue.js or any other "modern" framework</li>
+      <li>You can find <a href="https://preview.uxpin.com/3bb216c737ccee066be5c6b327a4c958c9a903cf#/pages/136070899">here</a> the prototype of the application</li>
+      <li>Add 3d viewer in the frontend for raw input file and the "output files"
+    </ul>
+    
+    <h3>Backend/Infrastructure</h3>
+    <ul>
+      <li>Add all the project in a docker container with a "production ready" configuration</li>
+      <li>Currently all the files are store locally, suggest scallable solution to store files and implement it</li>
+      <li>Add Endpoint to run algorithms (see Algorithms section), you don't have to implement them, but set all the stuff to call them and store the result</li>
+      <li>Add a register/login/logout/reset_password features to the application, ensure the security, a user must not be able to get a model of an other user</li>
+    </ul>
+
+    <h3>Algorithms</h3>
+    <ul>
+      <li><b>Mesh simplification</b>: simplify the mesh to reduce the file size and decrease computing time. The maximum authorized error is a modification of 0.01 milimeters of a vertex</li>
+      <li><b>Verification</b>: verify if the model is ready to be printed by testing if it is watertight (with no holes)</li>
+      <li><b>Reparation</b>: if the model is not watertight, repair it</li>
+      <li><b>Support</b>: create a support structure if needed according to <a href="https://all3dp.com/1/3d-printing-support-structures/#:~:text=3D%20printing%20support%20structures%20are,added%20cost%20to%20the%20model.">this site</a></li>
+      <li><b>Edges</b>: find "sharp edges", or "sharp features", by implementing for example: <a href="http://ljk.imag.fr/membres/Stefanie.Hahmann/PUBLICATIONS/WHH10small.pdf">this article</a></li>
+    </ul>
+
+    
+    You can provide your solution integrated to the (python) backend or in a standalone solution.
+
+    <h4>Integrated</h4>
+    <ul>
+      <li>Provide your solution as a python module with instruction to use it</li>
+      <li>If you want, you can integrate the solution with the provided backend</li>
+      <li>The target python must at least Python3.6</li>
+      <li>Provide all depedencies for each algorithms in a requirements.txt file</li>
+    </ul>
+
+    <h4>Standalone</h4>
+    <ul>
+      <li>Provide for each algorithm the source code and the instruction to execute and/or compile the executable</li>
+      <li>The executable must take the input stl file as first argument</li>
+      <li>The second argument of the executable give the path of the result file</li>
+      <li>If the result is a new 3d model, the result must be a (binary) stl file</li>
+      <li>If the result is a text or numbers, please provide the result as a json file</li>
+    </ul>
+
+    <h2>Evaluation criteria</h2>
+    <ul>
+      <li>Do not block, ask questions, the test wants to "simulate" a team work</li>
+      <li>Add comments/documentation in your delivery</li>
+      <li>Use git and commit regularly, the commit comment will be read, and the quality of the git history will be evaluated</li>
+      <li>Quality of code: try to respect the good practices of the using language</li>
+      <li>Provide tests</li>
+      <li>KISS: keep it simple stupid</li>
+      <li>Premature optimization is the root of all evil</li>
+      <li>More quality, less quantity</li>
+      <li>Reactive, pretty interface for the frontend</li>
+      <li>If you add API endpoint, please respect a RESTful philosophy </li>
+    </ul>
+    
+    
+
+    <h2>Some assets</h2>
+    <ul>
+      <li>This page is a quick & dirty, minimal frontend page for the application</li>
+      <li>The "boilerplate" source code is available <a href="#">here</a></li>
+      <li>A test stl <a href="stl/test.stl">test file</a> can be used to test algorithms and frontend page (download it)</li>
+      
+    </ul>
+    
+    <h1>List of models</h1>
+    <form id="model-list"></form>
+
+    <hr/>
+    <h1>Upload a model</h1>
+    <input id="raw-model" type="file" />
+
+    <hr/>
+    <h1>Actions</h1>
+    <button id="action-simplify" type="button">Simplify</button>
+    <button id="action-print" type="button">Print</button>
+    <div id="message"></div>
+
+    <hr/>
+    <h1>Printer</h1>
+    <h2>Status</h2>
+    <div id="status"></div>
+    <h2>Commands</h2>
+    <button id="action-start" type="button">Start</button>
+    <button id="action-stop" type="button">Stop</button>
+    <h2>Progress</h2>
+    <div id="progress"></div>
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.min.js"
+      integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+      crossorigin="anonymous"></script>
+    
+    <script src="js/script.js"></script>
+  </body>
+</html>
