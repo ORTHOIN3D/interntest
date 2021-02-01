@@ -31,7 +31,7 @@ class Forbidden(APIException):
 
 
 class Machine(models.Model):
-    state = models.CharField(max_length=256, choices=STATES, default=0)
+    state = models.CharField(max_length=256, choices=STATES, default="Idle")
     progress = models.IntegerField(default=0)
     error_code = models.IntegerField(default=0)
 
