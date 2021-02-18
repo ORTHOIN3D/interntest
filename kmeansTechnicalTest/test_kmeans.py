@@ -38,11 +38,11 @@ def angle_between_vectors(pt1,pt2):
 
     angle = math.atan2(y1, x1) - math.atan2(y2, x2)
     angle = (angle * 360.) / (2*math.pi)
-    print(f"original angle: {angle}")
+    #print(f"original angle: {angle}")
     if (angle < 0):
         angle += 360
-    print(f"transformed angle: {angle}")
-    print(" ")
+    #print(f"transformed angle: {angle}")
+    #print(" ")
     return angle
 
 def compass_to_rgb(h, s=1, v=1):
@@ -75,20 +75,19 @@ def rgb_to_hex(rgb):
 #######################################################
 
 # Loading the stl mesh file
-#your_mesh = mesh.Mesh.from_file('canine.stl')
-#your_mesh = mesh.Mesh.from_file('premolar.stl')
-#your_mesh = mesh.Mesh.from_file('molar.stl')
-your_mesh = mesh.Mesh.from_file('sphere.stl')
+#your_mesh = mesh.Mesh.from_file('sphere.stl')
 #your_mesh = mesh.Mesh.from_file('torus.stl')
+your_mesh = mesh.Mesh.from_file('premolar.stl')
+#your_mesh = mesh.Mesh.from_file('molar.stl')
 
 # Get the mins and maxs in all dimensions
 # 
 # What do the min and the max represent for each dimension?
 #
 (minx, maxx, miny, maxy, minz, maxz) = find_mins_maxs(your_mesh)
-print(f"minx: {minx}, maxx : {maxx}")
-print(f"miny: {miny}, maxy : {maxy}")
-print(f"minz: {minz}, maxz : {maxz}")
+# print(f"minx: {minx}, maxx : {maxx}")
+# print(f"miny: {miny}, maxy : {maxy}")
+# print(f"minz: {minz}, maxz : {maxz}")
 
 # Because the mesh is not centered to (0,0,0), we ensure it does
 your_mesh.translate([-(maxx+minx)/2., -(maxy+miny)/2., -(maxz+minz)/2.])
@@ -196,16 +195,16 @@ data = np.array([all_normals_xs, all_normals_ys, all_normals_zs_planar, list_of_
 data = data.T
 
 
-# Create a new plot
-figure = pyplot.figure()
-axes = mplot3d.Axes3D(figure)
-# Plot the original mesh
-axes.scatter(all_normals_xs, all_normals_ys, all_normals_zs, c=list_of_colors) #edgecolors='k', alpha=1
-# Auto scale to the mesh size
-scale = your_mesh.points.flatten()
-axes.auto_scale_xyz(scale, scale, scale)
-# Show the plot to the screen
-pyplot.show()
+# # Create a new plot
+# figure = pyplot.figure()
+# axes = mplot3d.Axes3D(figure)
+# # Plot the original mesh
+# axes.scatter(all_normals_xs, all_normals_ys, all_normals_zs, c=list_of_colors) #edgecolors='k', alpha=1
+# # Auto scale to the mesh size
+# scale = your_mesh.points.flatten()
+# axes.auto_scale_xyz(scale, scale, scale)
+# # Show the plot to the screen
+# pyplot.show()
 
 
 # Decide the number of clusters:
@@ -244,6 +243,7 @@ dist_list=[]
 red_dist_list=[]
 red_indx_list=[]
 red_color_list = []
+color_vec = [[255.,.0,.0], [.0,255.,.0], [.0,.0,255.], [.0,255.,255.], [255.,.0,255.],[255.,255.,.0]]
 for incentr in range(len(centroids)):
     for indtria in range(len(your_mesh.points)):
         current_normal_x = your_mesh.normals[indtria][0]
@@ -254,16 +254,20 @@ for incentr in range(len(centroids)):
         centroid_norml_y = centroids[incentr][1]
         centroid_norml_z = centroids[incentr][2]
         
+        #curr_angle = angle_between_vectors([current_normal_x, current_normal_y, current_normal_z],[centroid_norml_x, centroid_norml_y, centroid_norml_z])
+        #curr_r, curr_g, curr_b = compass_to_rgb(curr_angle, s=1, v=1)
+        
         curr_dist = ((current_normal_x+centroid_norml_x)**2+(current_normal_y+centroid_norml_y)**2+(current_normal_z+centroid_norml_z)**2)**.5 
         dist_list.append(curr_dist)
         
-        #if curr_dist <= 2:
-        red_dist_list.append(current_normal_z)
-        red_indx_list.append(indtria)
-        red_color_list.append(color_list[indtria])
+        if curr_dist <= 2:
+            red_dist_list.append(current_normal_z)
+            red_indx_list.append(indtria)
+            #red_color_list.append([curr_r, curr_g, curr_b])
+            red_color_list.append([color_vec[incentr][0], color_vec[incentr][1], color_vec[incentr][2]])
     
-    print(f"min dist: {np.amin(dist_list)}")
-    print(f"max dist: {np.amax(dist_list)}")
+    #print(f"min dist: {np.amin(dist_list)}")
+    #print(f"max dist: {np.amax(dist_list)}")
          
     tmpdict={incentr : {'nb_normals' : len(red_dist_list), 'normals' : red_dist_list, 'tria_indices' : red_indx_list, 'colors' : red_color_list}}
     belonging_classes.update(tmpdict)
@@ -280,7 +284,7 @@ for incentr in range(len(centroids)):
 # Create a new plot
 figure = pyplot.figure()
 axes = mplot3d.Axes3D(figure)
-color_kmeans = ['r', 'g', 'b', 'c', 'y', 'm', 'k', 'w']
+
 
 for inkey in range(len(belonging_classes)):
     #if inkey > 2:
@@ -292,13 +296,9 @@ for inkey in range(len(belonging_classes)):
 
         axes.scatter(your_mesh.points[current_list_of_indices[inpt]][0],
                     your_mesh.points[current_list_of_indices[inpt]][1],
-                    0., #your_mesh.points[current_list_of_indices[inpt]][2],
+                    your_mesh.points[current_list_of_indices[inpt]][2], # .0,
                     c=current_color, s=1, label='centroid', zorder=1)
                     #c=color_kmeans[inkey], s=1, label='centroid', zorder=1)
-
-# Plot the original mesh
-#axes.add_collection3d(mplot3d.art3d.Poly3DCollection(your_mesh.vectors, edgecolors=(0.45,0.45,0.45,0.9) ,facecolors=(0.75,0.75,0.75,0.9), zorder=2) ) #, alpha=0.99
-    
 
 # Auto scale to the mesh size
 scale = your_mesh.points.flatten()
